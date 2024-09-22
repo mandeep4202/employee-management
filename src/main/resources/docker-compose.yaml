@@ -1,0 +1,16 @@
+version: "3"
+services:
+  target11mongodb:
+    image: mongo:latest
+    container_name: "target11mongodb"
+    ports:
+      - "27017:27017"
+  springemployeemanagement:
+    image: springemployeemanagement:1.0
+    restart: always
+    ports:
+      - "9090:8080"
+    links:
+      - target11mongodb:mongo
+    depends_on:
+      - target11mongodb

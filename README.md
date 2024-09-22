@@ -1,7 +1,6 @@
 
+Run the below commands to launch the application
 
-How To run 
- -> Run the below commands to launch the application
 docker pull mongo:latest
 docker run -d -p 27017:27017 --name target11mongodb mongo:latest 
 docker build -t springemployeemanagement:1.0 .

@@ -1,0 +1,6 @@
+spring:
+  data:
+    mongodb:
+     database: employeeManagement
+     host: target11mongodb
+     port: 27017

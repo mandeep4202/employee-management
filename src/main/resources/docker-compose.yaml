@@ -14,3 +14,23 @@ services:
       - target11mongodb:mongo
     depends_on:
       - target11mongodb
+
+#This is a docker-compose.yml file using version 3, with two services: target11mongodb and springemployeemanagement.
+#  Here’s a detailed explanation:
+#
+#   •	version: "3": Specifies the version of the Docker Compose syntax being used.
+#   •	services: Defines the services (containers) that will be managed.
+#
+#  1. target11mongodb
+#
+#•	image: mongo:latest: Specifies that the service uses the latest version of the official MongoDB image.
+#•	container_name: "target11mongodb": Sets the container’s name as target11mongodb (useful for identification).
+#•	ports: "27017:27017": Maps port 27017 of the container (MongoDB’s default port) to port 27017 on the host machine, so MongoDB can be accessed locally via localhost:27017.
+#
+#  2. springemployeemanagement
+#
+#•	image: springemployeemanagement:1.0: Uses a custom image named springemployeemanagement with version 1.0, likely a Spring Boot application.
+#•	restart: always: Ensures that the container is always restarted if it stops or crashes.
+#•	ports: "9090:8080": Maps port 8080 of the container (probably the Spring Boot app’s default port) to port 9090 on the host machine. You can access the app at localhost:9090.
+#•	links: target11mongodb:mongo: Creates a link to the target11mongodb service. The alias mongo will be available as a hostname inside the springemployeemanagement container. This is how the app connects to MongoDB.
+#•	depends_on: target11mongodb: Ensures that the target11mongodb service starts before springemployeemanagement. This is important since the Spring app might rely on MongoDB being available at startup.

@@ -6,7 +6,10 @@ services:
     ports:
       - "27017:27017"
   springemployeemanagement:
-    image: springemployeemanagement:1.0
+    image: springemployeemanagement:1.1
+    build:
+      context: ../../../  # The build context, usually the directory containing your Dockerfile
+      dockerfile: Dockerfile  # The name of your Dockerfile (optional if it's named "Dockerfile")
     restart: always
     ports:
       - "9090:8080"

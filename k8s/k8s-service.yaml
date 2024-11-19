@@ -1,0 +1,15 @@
+# generate a service for the deployment
+apiVersion: v1
+kind: Service
+metadata:
+  name: employee-management-service
+  labels:
+    app: employee-management
+spec:
+  selector:
+    app: employee-management
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: NodePort

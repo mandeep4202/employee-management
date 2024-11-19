@@ -1,0 +1,70 @@
+# Deployment configuration for the employee-management application
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employee-management-deployment
+  labels:
+    app: employee-management
+spec:
+  replicas: 3  # Number of pod replicas
+  selector:
+    matchLabels:
+      app: employee-management
+  template:
+    metadata:
+      labels:
+        app: employee-management
+    spec:
+      containers:
+        - name: employee-management
+          image: springemployeemanagement:1.1  # Docker image for the application # image will be created during the build process of docker file. and the name of image will be given in the command line
+          imagePullPolicy: IfNotPresent  # Image pull policy
+          ports:
+            - containerPort: 8080  # Port on which the application listens
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: mongodb://mongo:27017/employeeManagement  # MongoDB connection URI
+
+---
+# Deployment configuration for MongoDB
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongo-deployment
+  labels:
+    app: mongo
+spec:
+  replicas: 1  # Number of pod replicas for MongoDB
+  selector:
+    matchLabels:
+      app: mongo
+  template:
+    metadata:
+      labels:
+        app: mongo
+    spec:
+      containers:
+        - name: mongo
+          image: mongo:4.4  # Docker image for MongoDB
+          ports:
+            - containerPort: 27017  # Port on which MongoDB listens
+          volumeMounts:
+            - name: mongo-storage
+              mountPath: /data/db  # Mount path for MongoDB data storage
+      volumes:
+        - name: mongo-storage
+          emptyDir: {}  # Ephemeral storage for MongoDB
+
+---
+# Service configuration for MongoDB
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+  labels:
+    app: mongo
+spec:
+  ports:
+    - port: 27017  # Service port for MongoDB
+  selector:
+    app: mongo

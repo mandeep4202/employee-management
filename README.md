@@ -20,3 +20,8 @@ curl --location 'localhost:9090/api/employees' \
 
 # Get : fetching an employee based on the id 
 curl --location 'localhost:9090/api/employees/12345'
+
+Special point: 
+TO get what is the port mapped to host machine open the 
+details of the container  or instead check the docker-compose file
+like Docker ps or Docker container ls

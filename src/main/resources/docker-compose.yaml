@@ -6,7 +6,7 @@ services:
     ports:
       - "27017:27017"
   springemployeemanagement:
-    image: springemployeemanagement:1.0
+    image: springemployeemanagement:1.1
     restart: always
     ports:
       - "9090:8080"

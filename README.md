@@ -1,10 +1,9 @@
 
 ## Run the below commands to launch the application
 
-docker pull mongo:latest  
-docker run -d -p 27017:27017 --name target11mongodb mongo:latest  
-docker build -t springemployeemanagement:1.0 .  
-docker run -p 9090:8080 --name springemployeemanagement --link target11mongodb:mongo -d springemployeemanagement:1.0  
+docker build -t employee-service:1.1 .  
+# Now go to docker-compose.yaml file path and execute below command  
+docker-compose up  
 
 # Sample Curl
 
@@ -21,3 +20,7 @@ curl --location 'localhost:9090/api/employees' \
 
 # Get : fetching an employee based on the id 
 curl --location 'localhost:9090/api/employees/12345'
+
+
+# To make the containers down that was up using docker-compose
+docker-compose down  

@@ -1,0 +1,31 @@
+version: "3.8"
+
+services:
+  employeedb:
+    image: mongo:latest
+    container_name: employeedb
+    ports:
+      - "27017:27017"
+    networks:
+      - employeenet
+
+  employeeservice:
+    image: employee-service:1.1
+    build:
+      context: ../../../
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "9091:8080"
+    depends_on:
+      - employeedb
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://employeedb:27017/employeeManagement
+    networks:
+      - employeenet
+
+networks:
+  employeenet:
+    driver: bridge
+
+

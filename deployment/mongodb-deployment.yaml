@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employeedb    # name of this deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employeedb   #kind of linking the pod to this deployment
+  template:
+    metadata:
+      labels:
+        app: employeedb  # name of the pod it will create
+    spec:
+      containers:
+        - name: employeedb  # container name
+          image: mongo:latest
+          ports:
+            - containerPort: 27017

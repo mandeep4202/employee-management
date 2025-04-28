@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employeeservice
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: employeeservice
+  template:
+    metadata:
+      labels:
+        app: employeeservice
+    spec:
+      containers:
+        - name: employeeservice
+          image: employee-service:1.1
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: mongodb://employeedb:27017/employeeManagement

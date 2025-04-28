@@ -1,0 +1,53 @@
+. apiVersion: apps/v1
+----------------------
+This specifies the version of the Kubernetes API used for the resource.
+'apiVersion: apps/v1' is used for Deployment and other controller-based resources.
+
+2. kind: Deployment
+-------------------
+This defines the type of Kubernetes resource, in this case, a 'Deployment'.
+A Deployment is used for managing stateless applications and ensuring the desired state.
+
+3. metadata: name: employees-service
+------------------------------------
+The 'metadata' field contains information about the object. 'name' sets the name
+of the Deployment, which is used to reference and manage it in the Kubernetes system.
+
+4. spec: replicas: 1
+--------------------
+Defines the number of pod replicas to run. In this case, '1' replica means that
+there should always be exactly one instance of the pod running.
+
+5. selector: matchLabels: app: employees-service
+-------------------------------------------------
+The 'selector' is used to specify which Pods belong to this Deployment.
+It uses labels to match the Pods to the Deployment.
+
+6. template: metadata: labels: app: employees-service
+-----------------------------------------------------
+The 'template' specifies the labels that will be applied to the Pods created by the Deployment.
+The Pods will inherit these labels and be associated with this Deployment.
+
+7. spec: containers:
+---------------------
+Defines the containers within the Pods. A Deployment can contain multiple containers.
+This section specifies the image and other settings related to the container.
+
+   a. name: employees-service-container
+   --------------------------------------
+   The 'name' gives the container a unique identifier within the Pod.
+
+   b. image: employmentmanagement:1.1
+   ------------------------------------
+   Specifies the Docker image to use for the container.
+
+   c. imagePullPolicy: IfNotPresent
+   ---------------------------------
+   Determines when Kubernetes should pull the image. 'IfNotPresent' means
+   Kubernetes will pull the image only if it's not already available locally.
+
+   d. ports:
+      - containerPort: 8080
+   --------------------------------
+   Exposes port 8080 from the container to allow external access.
+   The application inside the container will listen on this port.

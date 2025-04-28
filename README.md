@@ -1,9 +1,9 @@
 
 ## Run the below commands to launch the application
 
-docker build -t springemployeemanagement:1.0 .  
-Now go to docker-compose.yaml and execute below command  
-docker-conpose up  
+docker build -t employee-service:1.1 .  
+# Now go to docker-compose.yaml file path and execute below command  
+docker-compose up  
 
 # Sample Curl
 
@@ -20,3 +20,7 @@ curl --location 'localhost:9090/api/employees' \
 
 # Get : fetching an employee based on the id 
 curl --location 'localhost:9090/api/employees/12345'
+
+
+# To make the containers down that was up using docker-compose
+docker-compose down  

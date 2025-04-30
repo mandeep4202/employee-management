@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: employeedb
+  name: employeedb-svc
 spec:
   selector:
     app: employeedb

@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: employeedb    # name of this deployment
+  name: employeedb-deploy    # name of this deployment
 spec:
   replicas: 1
   selector:

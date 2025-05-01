@@ -6,11 +6,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: employeeservice
-  template:
+      app: employeeservice #This Deployment should manage Pods that have the label app=employeeservice
+  template:     # pod configuration
     metadata:
       labels:
-        app: employeeservice
+        app: employeeservice # This should be same of selector.matchLabels.app
     spec:
       containers:
         - name: employeeservice

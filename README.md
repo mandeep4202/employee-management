@@ -2,8 +2,11 @@
 ## Run the below commands to launch the application
 
 docker build -t employee-service:1.1 .  
-# Now go to docker-compose.yaml file path and execute below command  
-docker-compose up  
+# Now goto the deployment folder and run the following command in order
+kubectl apply -f mongodb-deployment.yaml
+kubectl apply -f mongodb-service.yaml
+kubectl apply -f employeeservice-deployment.yaml
+kubectl apply -f employeeservice-service.yaml
 
 # Sample Curl
 
@@ -22,5 +25,8 @@ curl --location 'localhost:9090/api/employees' \
 curl --location 'localhost:9090/api/employees/12345'
 
 
-# To make the containers down that was up using docker-compose
-docker-compose down  
+# To make the containers down that was up using above helm files 
+kubectl delete -f employeeservice-service.yaml
+kubectl delete -f employeeservice-deployment.yaml
+kubectl delete -f mongodb-service.yaml
+kubectl delete -f mongodb-deployment.yaml

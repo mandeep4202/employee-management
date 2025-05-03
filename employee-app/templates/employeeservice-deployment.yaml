@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.employeeservice.name }}-deploy
+spec:
+  replicas: {{ .Values.employeeservice.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.employeeservice.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.employeeservice.name }}
+    spec:
+      containers:
+        - name: {{ .Values.employeeservice.name }}
+          image: "{{ .Values.employeeservice.image }}:{{ .Values.employeeservice.tag }}"
+          ports:
+            - containerPort: {{ .Values.employeeservice.containerPort }}
+          env:
+            - name: SPRING_DATA_MONGODB_URI
+              value: {{ .Values.employeeservice.env.mongodbUri }}

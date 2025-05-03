@@ -1,0 +1,22 @@
+employeeservice:
+  name: employeeservice
+  image: employee-service
+  tag: "1.1"
+  replicas: 2
+  containerPort: 8080
+  service:
+    type: NodePort
+    port: 9090
+    targetPort: 8080
+    nodePort: 30080
+  env:
+    mongodbUri: "mongodb://employeedb-svc:27017/employeeManagement"
+
+mongodb:
+  name: employeedb
+  image: mongo
+  tag: latest
+  replicas: 1
+  containerPort: 27017
+  service:
+    port: 27017
